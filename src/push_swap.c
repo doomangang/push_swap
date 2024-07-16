@@ -5,26 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/14 19:21:00 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/15 16:30:08 by jihyjeon         ###   ########.fr       */
+/*   Created: 2024/07/16 19:45:26 by jihyjeon          #+#    #+#             */
+/*   Updated: 2024/07/16 21:47:21 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-int	main(int ac, char **av)
+void	push_swap(t_ab *ab, int *num, int size)
 {
-	int	num[500];
-	int size;
-	t_ab	ab;
-
-	if (ac < 2)
-		return (0);
-	else
+	if (size <= 5)
 	{
-		size = get_num(av, num);
-		if (size < 2)
-			return (0);
-		init_stack(ab, num, size);
+		under_five(num, size);
+		return ;
 	}
+	if (!init_stack(&ab, num, size))
+		return ;
+}
+
+void	under_five(int *num, int size)
+{
+	
 }
