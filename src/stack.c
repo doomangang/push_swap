@@ -6,39 +6,53 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:08:29 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/16 22:10:12 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:27:57 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-int	init_stack(t_ab *ab, int *arr, int size)
+int	init_ab(t_ab *ab, int *arr, int size)
 {
-	ab = (t_ab *)malloc(sizeof(t_ab));
-	if (!ab)
-		return (0);
 	ab->a = (t_stack *)malloc(sizeof(t_stack));
 	ab->b = (t_stack *)malloc(sizeof(t_stack));
-	if (!ab->a || !ab->b)
+	if (ab->a && ab->b)
 	{
-		free(ab->a);
-		free(ab->b);
-		free(ab);
-		return (0);
+		ab->size = size;
+		ab->a->stack = arr;
+		ab->b->stack = (int *)malloc(sizeof(int) * size);
+		if (ab->b)
+		{
+			ab->a->front = 0;
+			ab->a->rear = size - 1;
+			ab->b->front = 0;
+			ab->b->rear = 0;
+			ab->a->size = size;
+			ab->b->size = size;
+			return (1);
+		}
 	}
-	ab->b->stack = (int *)malloc(sizeof(int) * size);
-	if (!ab->b->stack)
-	{
-		free(ab->a);
-		free(ab->b);
-		free(ab);
-	}
-	ab->a->stack = arr;
-	ab->size = size;
-	ab->a->front = 0;
-	ab->b->rear = size - 1;
-	ab->b->front = 0;
-	ab->b->rear = 0;
+	free(ab->b->stack);
+	free(ab->b);
+	free(ab->a);
+	free(ab);
+	returnb (0);
 }
 
+int	is_empty(t_stack *s)
+{
+	return (s->front == s->rear);
+}
 
+int	is_full(t_stack *s)
+{
+	return ((s->rear + 1) % s->size == s->front);
+}
+
+void	delete_ab(t_ab *ab)
+{
+	free(ab->b->stack);
+	free(ab->b);
+	free(ab->a);
+	free(ab);
+}

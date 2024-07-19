@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 19:21:00 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/16 21:46:48 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:22:46 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int ac, char **av)
 {
 	int		*num;
 	int		size;
-	t_ab	ab;
 	char	**tmp;
 
 	if (ac < 2)
@@ -33,9 +32,9 @@ int	main(int ac, char **av)
 		num = get_num(++av, &size);
 	if (!num)
 		print_error();
-	push_swap(&ab, num, size);
-	free(num);
-	num = NULL;
+	if (sorted(num, size))
+		return (0);
+	init(num, size);
 	return (0);
 }
 

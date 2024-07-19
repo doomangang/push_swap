@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 19:21:09 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/16 21:48:00 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/19 21:06:00 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_stack
 	int	*stack;
 	int	front;
 	int	rear;
+	int	size;
 }		t_stack;
 
 typedef struct s_ab
@@ -41,7 +42,20 @@ int		free_arr(char **arr);
 void	print_error(void);
 size_t	s_cnt(const char *str, char chr);
 int		my_atoi(char *str, int *flag);
-int		init_stack(t_ab *ab, int *arr, int size);
-void	push_swap(t_ab *ab, int *num, int size);
+int		sorted(int *num, int size);
+void	init(int *num, int size);
+void	under_five(int *num, int size);
+int		init_ab(t_ab *ab, int *arr, int size);
+void	swap(t_stack *s, char ab);
+void	rotate(t_stack *s, char c);
+void	rev_rotate(t_stack *s, char c);
+void	push(t_ab *ab, char c);
+int		is_empty(t_stack *s);
+int		is_full(t_stack *s);
+void	delete_ab(t_ab *ab);
+void	add_front(t_stack *s, int val);
+void	add_rear(t_stack *s, int val);
+int		pop_front(t_stack *s);
+int		pop_rear(t_stack *s);
 
 #endif

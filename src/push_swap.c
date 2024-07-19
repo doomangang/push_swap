@@ -6,24 +6,52 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:45:26 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/16 21:47:21 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:23:30 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-void	push_swap(t_ab *ab, int *num, int size)
+void	init(int *num, int size)
 {
+	t_ab	*ab;
+
 	if (size <= 5)
 	{
 		under_five(num, size);
 		return ;
 	}
-	if (!init_stack(&ab, num, size))
+	ab = (t_ab *)malloc(sizeof(t_ab));
+	if (!ab)
 		return ;
+	if (!init_ab(ab, num, size))
+		return ;
+	delete_ab(ab);
 }
 
 void	under_five(int *num, int size)
 {
-	
+	if (size > 5)
+		num++;
+	free(num);
+}
+
+int	sorted(int *num, int size)
+{
+	int	idx;
+
+	idx = 0;
+	while (idx != size -1)
+	{
+		if (num[idx] > num[idx + 1])
+			return (0);
+		if (num[idx] == num[idx + 1])
+		{
+			free(num);
+			print_error();
+		}
+		idx++;
+	}
+	free(num);
+	return (1);
 }
