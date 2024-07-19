@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:08:29 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/19 20:27:57 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/19 22:22:10 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	init_ab(t_ab *ab, int *arr, int size)
 	free(ab->b);
 	free(ab->a);
 	free(ab);
-	returnb (0);
+	return (0);
 }
 
 int	is_empty(t_stack *s)

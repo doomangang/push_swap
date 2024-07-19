@@ -3,7 +3,10 @@ NAME			= push_swap
 SRCS 			= src/main.c\
 				src/push_swap.c\
 				src/stack.c\
-				src/libtool.c
+				src/libtool.c\
+				src/stack_util.c\
+				src/command.c\
+				src/command_base.c
 				
 OBJS 			= $(SRCS:.c=.o)
 

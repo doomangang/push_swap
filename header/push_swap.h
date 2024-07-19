@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 19:21:09 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/19 21:06:00 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/19 23:12:51 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ size_t	s_cnt(const char *str, char chr);
 int		my_atoi(char *str, int *flag);
 int		sorted(int *num, int size);
 void	init(int *num, int size);
-void	under_five(int *num, int size);
+void	under_five(t_ab *ab, int size);
+int		sort(int *num, int size);
 int		init_ab(t_ab *ab, int *arr, int size);
 void	swap(t_stack *s, char ab);
 void	rotate(t_stack *s, char c);
