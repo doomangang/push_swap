@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 19:34:13 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/19 20:59:29 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/20 22:36:02 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	swap(t_stack *s, char ab)
 		ft_putstr_fd("sb\n", 1);
 }
 
-void	push(t_ab *ab, char c)
+int	push(t_ab *ab, char c)
 {
 	if (c == 'a')
 	{
@@ -33,6 +33,7 @@ void	push(t_ab *ab, char c)
 		{
 			add_front(ab->a, pop_front(ab->b));
 			ft_putstr_fd("pa\n", 1);
+			return (1);
 		}
 	}
 	if (c == 'b')
@@ -41,8 +42,10 @@ void	push(t_ab *ab, char c)
 		{
 			add_front(ab->b, pop_front(ab->a));
 			ft_putstr_fd("pb\n", 1);
+			return (1);
 		}
 	}
+	return (0);
 }
 
 void	rotate(t_stack *s, char c)

@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 19:21:00 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/19 20:22:46 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/20 16:59:48 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ int	*get_num(char **av, int *size)
 	int	*arr;
 
 	*size = count_height(av);
-	arr = (int *)malloc(sizeof(int) * *size);
+	arr = (int *)malloc(sizeof(int) * (*size + 1));
 	if (!arr)
 		return (0);
-	idx = 0;
-	while (idx != *size)
+	idx = 1;
+	while (idx != *size + 1)
 	{
-		arr[idx] = my_atoi(av[idx], &flag);
+		arr[idx] = my_atoi(av[idx - 1], &flag);
 		if (flag)
 		{
 			free(arr);

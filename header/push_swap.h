@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 19:21:09 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/19 23:12:51 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/20 22:35:20 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,12 @@ int		sorted(int *num, int size);
 void	init(int *num, int size);
 void	under_five(t_ab *ab, int size);
 int		sort(int *num, int size);
+void	sort_three(t_stack *s);
 int		init_ab(t_ab *ab, int *arr, int size);
 void	swap(t_stack *s, char ab);
 void	rotate(t_stack *s, char c);
 void	rev_rotate(t_stack *s, char c);
-void	push(t_ab *ab, char c);
+int		push(t_ab *ab, char c);
 int		is_empty(t_stack *s);
 int		is_full(t_stack *s);
 void	delete_ab(t_ab *ab);
