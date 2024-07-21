@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 02:00:44 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/21 02:31:15 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/21 11:08:41 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	convert(t_ab *ab)
 		while (j != ab->size)
 		{
 			if (new[i] == ab->a->stack[j])
+				;
 		}
 	}
 }

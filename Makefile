@@ -1,7 +1,7 @@
 NAME			= push_swap
 
 SRCS 			= src/main.c\
-				src/push_swap.c\
+				src/init.c\
 				src/stack.c\
 				src/libtool.c\
 				src/stack_util.c\

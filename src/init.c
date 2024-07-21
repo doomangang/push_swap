@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:45:26 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/21 01:55:03 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/21 03:49:09 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init(int *num, int size)
 		ft_putstr_fd("sa\n", 1);
 	if (size <= 5)
 		under_five(ab, size);
-	push_swap(ab);
+	// push_swap(ab);
 	delete_ab(ab);
 }
 
@@ -38,13 +38,7 @@ void	under_five(t_ab *ab, int size)
 	idx = 0;
 	while (idx != size - 3)
 	{
-		if ( ab->a->stack[ab->a->rear] > mid)
-		{
-			rev_rotate(ab->a, 'a');
-			push(ab, 'b');
-			idx++;
-		}
-		else if (ab->a->stack[(ab->a->front + 1) % ab->size] > mid)
+		if (ab->a->stack[(ab->a->front + 1) % ab->size] > mid)
 		{
 			push(ab, 'b');
 			idx++;
@@ -54,13 +48,15 @@ void	under_five(t_ab *ab, int size)
 	}
 	sort_three(ab->a);
 	if (size > 3)
-	{if (!is_empty(ab->b) && ab->b->stack[(ab->b->front + 1) % ab->size] > ab->b->stack[ab->b->rear])
-		rotate(ab->b, 'b');
-	push(ab, 'a');
-	rotate(ab->a, 'a');
-	if (push(ab, 'a'))
+	{
+		if (ab->b->stack[(ab->b->front + 1) % ab->size] > ab->b->stack[ab->b->rear])
+			rotate(ab->b, 'b');
+		push(ab, 'a');
 		rotate(ab->a, 'a');
-	idx = 0;}
+		if (push(ab, 'a'))
+			rotate(ab->a, 'a');
+	}
+	idx = 0;
 	while (idx != size)
 	{
 		printf("%d\t", ab->a->stack[(ab->a->front + idx + 1) % ab->size]);
