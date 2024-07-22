@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:08:29 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/20 17:02:16 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:08:17 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	is_full(t_stack *s)
 void	delete_ab(t_ab *ab)
 {
 	free(ab->b->stack);
+	free(ab->a->stack);
 	free(ab->b);
 	free(ab->a);
 	free(ab);

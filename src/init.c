@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:45:26 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/21 03:49:09 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:49:54 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,33 @@ void	init(int *num, int size)
 	if (!ab)
 		return ;
 	if (!init_ab(ab, num, size))
-		return ;
+		return (delete_ab(ab));
 	if (size == 2)
+	{
 		ft_putstr_fd("sa\n", 1);
+		return (delete_ab(ab));
+	}
+	convert(ab);
 	if (size <= 5)
 		under_five(ab, size);
-	// push_swap(ab);
+	else
+		push_swap(ab);
 	delete_ab(ab);
 }
 
 void	under_five(t_ab *ab, int size)
 {
-	int mid;
 	int	idx;
 
-	mid = sort(ab->a->stack, size);
 	idx = 0;
 	while (idx != size - 3)
 	{
-		if (ab->a->stack[(ab->a->front + 1) % ab->size] > mid)
+		if (ab->a->stack[(ab->a->front + 1) % ab->size] > 2)
 		{
 			push(ab, 'b');
 			idx++;
 		}
-		else if (ab->a->stack[(ab->a->front + 1) % ab->size] <= mid)
+		else if (ab->a->stack[(ab->a->front + 1) % ab->size] <= 2)
 			rotate(ab->a, 'a');
 	}
 	sort_three(ab->a);
@@ -56,32 +59,24 @@ void	under_five(t_ab *ab, int size)
 		if (push(ab, 'a'))
 			rotate(ab->a, 'a');
 	}
-	idx = 0;
-	while (idx != size)
-	{
-		printf("%d\t", ab->a->stack[(ab->a->front + idx + 1) % ab->size]);
-		idx++;
-	}
-	printf("\n");
 }
 
-int	sort(int *num, int size)
+void	sort(t_stack *s, int *tab)
 {
 	int	index;
 	int	cmp;
 	int	temp;
-	int	tab[size];
 
 	index = -1;
-	while (++index != size)
+	while (++index != s->size - 1)
 	{
-		tab[index] = num[index + 1];
+		tab[index] = s->stack[(s->front + index + 1) % s->size];
 	}
 	index = -1;
-	while (++index < size)
+	while (++index < s->size)
 	{
 		cmp = index;
-		while (cmp++ < size - 1)
+		while (cmp++ < s->size - 1)
 		{
 			if (tab[index] > tab[cmp])
 			{
@@ -91,7 +86,6 @@ int	sort(int *num, int size)
 			}
 		}
 	}
-	return (tab[2]);
 }
 
 void	sort_three(t_stack *s)
