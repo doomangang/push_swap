@@ -6,7 +6,8 @@ SRCS 			= src/main.c\
 				src/libtool.c\
 				src/stack_util.c\
 				src/command.c\
-				src/command_base.c
+				src/command_base.c\
+				src/push_swap.c
 				
 OBJS 			= $(SRCS:.c=.o)
 

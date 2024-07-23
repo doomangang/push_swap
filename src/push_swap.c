@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 02:00:44 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/22 14:49:13 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/23 23:01:26 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,80 @@
 
 void	push_swap(t_ab *ab)
 {
-	int	num;
 	int	chunk;
+	int	sz;
 
-	if (!convert(ab))
-		return ;
+	sz = ab->size - 1;
+	chunk = 0.000000053 * sz * sz + 0.03 * sz + 14.5;
+	a_to_b(ab, chunk);
+	b_to_a(ab);
 }
 
-int	convert(t_ab *ab)
+void	a_to_b(t_ab *ab, int ch)
 {
-	int	*new;
-	int	*tmp;
 	int	i;
-	int	j;
 
-	new = (int *)malloc(sizeof(int) * (ab->size));
-	if (!new)
-		return (0);
-	tmp = quick_sort(ab->a, );
-	i = -1;
-	while (++i != ab->size - 1)
+	i = 0;
+	while (i != ab->size - 1)
 	{
-		j = -1;
-		while (++j != ab->size)
+		if (get_front(ab->a) <= i)
 		{
-			if (tmp[i] == ab->a->stack[(ab->a->front + 1 + j) % ab->size])
-				new[(ab->a->front + 1 + j) % ab->size] = i;
+			push(ab, 'b');
+			i++;
 		}
+		else if (get_front(ab->a) > i && get_front(ab->a) <= i + ch)
+		{
+			push(ab, 'b');
+			rotate(ab->b, 'b');
+			i++;
+		}
+		else if (get_front(ab->a) > i + ch)
+			rotate(ab->a, 'a');
 	}
-	free(tmp);
-	free(ab->a->stack);
-	ab->a->stack = new;
-	return (1);
 }
 
-int	*quick_sort(int *arr, int lo, int hi)
+void	b_to_a(t_ab *ab)
 {
-	int	piv;
+	int	max;
+	int	size;
 
+	size = ab->b->size - 1;
+	while (size != 0)
+	{
+		max = get_max(ab->b);
+		if (max <= size / 2)
+		{
+			while (--max > 0)
+				rotate(ab->b, 'b');
+		}
+		else
+		{
+			while (max++ < size)
+				rev_rotate(ab->b, 'b');
+			rev_rotate(ab->b, 'b');
+		}
+		push(ab, 'a');
+		size--;
+	}
+}
 
+int	get_max(t_stack *s)
+{
+	int	count;
+	int m_val;
+	int m_idx;
+
+	count = 1;
+	m_val = 0;
+	m_idx = 1;
+	while ((count + s->front) % s->size != (s->rear + 1) % s->size)
+	{
+		if (s->stack[(count + s->front) % s->size] > m_val)
+		{
+			m_idx = count;
+			m_val = s->stack[(count + s->front) % s->size];
+		}
+		count++;
+	}
+	return (m_idx);
 }

@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:45:26 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/22 15:49:54 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/23 18:17:55 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	init(int *num, int size)
 		ft_putstr_fd("sa\n", 1);
 		return (delete_ab(ab));
 	}
-	convert(ab);
+	if (!convert(ab))
+		return (delete_ab(ab));
 	if (size <= 5)
 		under_five(ab, size);
 	else
@@ -41,50 +42,23 @@ void	under_five(t_ab *ab, int size)
 	idx = 0;
 	while (idx != size - 3)
 	{
-		if (ab->a->stack[(ab->a->front + 1) % ab->size] > 2)
+		if (get_front(ab->a) > 2)
 		{
 			push(ab, 'b');
 			idx++;
 		}
-		else if (ab->a->stack[(ab->a->front + 1) % ab->size] <= 2)
+		else if (get_front(ab->a) <= 2)
 			rotate(ab->a, 'a');
 	}
 	sort_three(ab->a);
 	if (size > 3)
 	{
-		if (ab->b->stack[(ab->b->front + 1) % ab->size] > ab->b->stack[ab->b->rear])
+		if (get_front(ab->a) > ab->b->stack[ab->b->rear])
 			rotate(ab->b, 'b');
 		push(ab, 'a');
 		rotate(ab->a, 'a');
 		if (push(ab, 'a'))
 			rotate(ab->a, 'a');
-	}
-}
-
-void	sort(t_stack *s, int *tab)
-{
-	int	index;
-	int	cmp;
-	int	temp;
-
-	index = -1;
-	while (++index != s->size - 1)
-	{
-		tab[index] = s->stack[(s->front + index + 1) % s->size];
-	}
-	index = -1;
-	while (++index < s->size)
-	{
-		cmp = index;
-		while (cmp++ < s->size - 1)
-		{
-			if (tab[index] > tab[cmp])
-			{
-				temp = tab[cmp];
-				tab [cmp] = tab[index];
-				tab[index] = temp;
-			}
-		}
 	}
 }
 
@@ -132,5 +106,34 @@ int	sorted(int *num, int size)
 		idx++;
 	}
 	free(num);
+	return (1);
+}
+
+int	convert(t_ab *ab)
+{
+	int	*new;
+	int	*tmp;
+	int	i;
+	int	j;
+
+	new = (int *)malloc(sizeof(int) * (ab->size));
+	if (!new)
+		return (0);
+	tmp = sort(ab->a);
+	if (!tmp)
+		return (0);
+	i = -1;
+	while (++i != ab->size - 1)
+	{
+		j = -1;
+		while (++j != ab->size)
+		{
+			if (tmp[i] == ab->a->stack[(ab->a->front + 1 + j) % ab->size])
+				new[(ab->a->front + 1 + j) % ab->size] = i;
+		}
+	}
+	free(tmp);
+	free(ab->a->stack);
+	ab->a->stack = new;
 	return (1);
 }

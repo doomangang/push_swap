@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:08:29 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/22 15:08:17 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/23 21:02:47 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,16 @@ void	delete_ab(t_ab *ab)
 	free(ab->b);
 	free(ab->a);
 	free(ab);
+}
+
+int	get_size(t_stack *s)
+{
+	int	idx;
+
+	idx = 1;
+	while ((idx + s->front) % s->size != s->rear)
+	{
+		idx++;
+	}
+	return (idx);
 }
