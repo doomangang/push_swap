@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 19:34:13 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/20 22:36:02 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/24 02:40:03 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,11 @@ void	rev_rotate(t_stack *s, char c)
 		ft_putstr_fd("rra\n", 1);
 	if (c == 'b')
 		ft_putstr_fd("rrb\n", 1);
+}
+
+void	ss(t_ab *ab)
+{
+	swap(ab->a, 0);
+	swap(ab->b, 0);
+	ft_putstr_fd("ss\n", 1);
 }

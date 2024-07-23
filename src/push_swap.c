@@ -6,21 +6,34 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 02:00:44 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/23 23:01:26 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/24 04:21:06 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-void	push_swap(t_ab *ab)
+void	push_swap(t_ab *ab, int *num, int size)
 {
 	int	chunk;
-	int	sz;
 
-	sz = ab->size - 1;
-	chunk = 0.000000053 * sz * sz + 0.03 * sz + 14.5;
-	a_to_b(ab, chunk);
-	b_to_a(ab);
+	if (!init_ab(ab, num, size))
+		return ;
+	if (size == 2)
+	{
+		ft_putstr_fd("sa\n", 1);
+		return (delete_ab(ab));
+	}
+	if (!convert(ab))
+		return (delete_ab(ab));
+	if (size <= 5)
+		under_five(ab, size);
+	else
+	{
+		chunk = 0.000000053 * size * size + 0.03 * size + 14.5;
+		a_to_b(ab, chunk);
+		b_to_a(ab);
+	}
+	delete_ab(ab);
 }
 
 void	a_to_b(t_ab *ab, int ch)
@@ -38,7 +51,10 @@ void	a_to_b(t_ab *ab, int ch)
 		else if (get_front(ab->a) > i && get_front(ab->a) <= i + ch)
 		{
 			push(ab, 'b');
-			rotate(ab->b, 'b');
+			if (get_front(ab->a) > i + ch)
+				rr(ab);
+			else
+				rotate(ab->b, 'b');
 			i++;
 		}
 		else if (get_front(ab->a) > i + ch)
@@ -71,23 +87,56 @@ void	b_to_a(t_ab *ab)
 	}
 }
 
-int	get_max(t_stack *s)
+void	under_five(t_ab *ab, int size)
 {
-	int	count;
-	int m_val;
-	int m_idx;
+	int	idx;
 
-	count = 1;
-	m_val = 0;
-	m_idx = 1;
-	while ((count + s->front) % s->size != (s->rear + 1) % s->size)
+	idx = 0;
+	while (idx != size - 3)
 	{
-		if (s->stack[(count + s->front) % s->size] > m_val)
+		if (get_front(ab->a) > 2)
 		{
-			m_idx = count;
-			m_val = s->stack[(count + s->front) % s->size];
+			push(ab, 'b');
+			idx++;
 		}
-		count++;
+		else if (get_front(ab->a) <= 2)
+			rotate(ab->a, 'a');
 	}
-	return (m_idx);
+	sort_three(ab->a);
+	if (size > 3)
+	{
+		if (get_front(ab->b) > ab->b->stack[ab->b->rear])
+			rotate(ab->b, 'b');
+		push(ab, 'a');
+		rotate(ab->a, 'a');
+		if (push(ab, 'a'))
+			rotate(ab->a, 'a');
+	}
+}
+
+void	sort_three(t_stack *s)
+{
+	int	a;
+	int	b;
+	int	c;
+
+	a = s->stack[(s->front + 1) % s->size];
+	b = s->stack[(s->front + 2) % s->size];
+	c = s->stack[(s->front + 3) % s->size];
+	if (a > b && b < c && a < c)
+		swap(s, 'a');
+	else if (a > b && b > c)
+	{
+		swap(s, 'a');
+		rev_rotate(s, 'a');
+	}
+	else if (a > b && b < c && a > c)
+		rotate(s, 'a');
+	else if (a < b && b > c && a < c)
+	{
+		swap(s, 'a');
+		rotate(s, 'a');
+	}
+	else if (a < b && b > c && a > c)
+		rev_rotate(s, 'a');
 }

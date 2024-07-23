@@ -6,24 +6,28 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 19:21:00 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/20 16:59:48 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/24 02:54:25 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
+
+void	leak(void)
+{
+	system("leaks push_swap");
+}
 
 int	main(int ac, char **av)
 {
 	int		*num;
 	int		size;
 	char	**tmp;
+	t_ab	*ab;
 
 	if (ac < 2)
 		return (0);
 	if (ac == 2)
 	{
-		if (s_cnt(av[1], ' ') == 1)
-			return (0);
 		tmp = ft_split(av[1], ' ');
 		num = get_num(tmp, &size);
 		free_arr(tmp);
@@ -34,7 +38,10 @@ int	main(int ac, char **av)
 		print_error();
 	if (sorted(num, size))
 		return (0);
-	init(num, size);
+	ab = (t_ab *)malloc(sizeof(t_ab));
+	if (!ab)
+		return (0);
+	push_swap(ab, num, size);
 	return (0);
 }
 

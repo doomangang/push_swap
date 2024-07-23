@@ -6,17 +6,65 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 20:51:15 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/19 21:08:12 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/24 02:43:22 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-void	ss(t_ab *ab)
+int	get_max(t_stack *s)
 {
-	swap(ab->a, 0);
-	swap(ab->b, 0);
-	ft_putstr_fd("ss\n", 1);
+	int	count;
+	int	m_val;
+	int	m_idx;
+
+	count = 1;
+	m_val = 0;
+	m_idx = 1;
+	while ((count + s->front) % s->size != (s->rear + 1) % s->size)
+	{
+		if (s->stack[(count + s->front) % s->size] > m_val)
+		{
+			m_idx = count;
+			m_val = s->stack[(count + s->front) % s->size];
+		}
+		count++;
+	}
+	return (m_idx);
+}
+
+int	convert(t_ab *ab)
+{
+	int	*new;
+	int	*tmp;
+	int	i;
+	int	j;
+
+	new = (int *)malloc(sizeof(int) * (ab->size));
+	if (!new)
+		return (0);
+	tmp = sort(ab->a);
+	if (!tmp)
+		return (0);
+	i = -1;
+	while (++i != ab->size - 1)
+	{
+		j = -1;
+		while (++j != ab->size)
+		{
+			if (tmp[i] == ab->a->stack[(ab->a->front + 1 + j) % ab->size])
+				new[(ab->a->front + 1 + j) % ab->size] = i;
+		}
+	}
+	free(tmp);
+	free(ab->a->stack);
+	ab->a->stack = new;
+	return (1);
+}
+
+int	get_rear(t_stack *s)
+{
+	return (s->stack[s->rear]);
 }
 
 void	rr(t_ab *ab)

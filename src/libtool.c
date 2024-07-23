@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:06:08 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/23 18:07:53 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/24 02:10:33 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,33 @@ void	copy(t_stack *s, int *t)
 	{
 		t[index] = s->stack[(s->front + index + 1) % s->size];
 	}
+}
+
+int	sorted(int *num, int size)
+{
+	int	idx;
+	int cmp;
+
+	idx = 0;
+	while (++idx < size)
+	{
+		cmp = idx;
+		while (++cmp < size + 1)
+		{
+			if (num[idx] == num[cmp])
+			{
+				free(num);
+				print_error();
+			}
+		}
+	}
+	idx = 1;
+	while (idx != size)
+	{
+		if (num[idx] > num[idx + 1])
+			return (0);
+		idx++;
+	}
+	free(num);
+	return (1);
 }
