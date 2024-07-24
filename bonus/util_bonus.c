@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:21:51 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/24 22:07:30 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/24 22:17:53 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,13 @@ void	print_error(void)
 {
 	ft_putstr_fd("Error\n", 2);
 	exit(EXIT_FAILURE);
+}
+
+void	delete_ab(t_ab *ab)
+{
+	free(ab->b->stack);
+	free(ab->a->stack);
+	free(ab->b);
+	free(ab->a);
+	free(ab);
 }

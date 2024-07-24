@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:04:48 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/24 22:09:44 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/24 22:18:23 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	dup_check(int *num, int size);
 int		sorted(int *num, int size);
 void	check(char *num, int size);
 int		init_ab(t_ab *ab, int *arr, int size);
+int		convert(t_ab *ab);
 int		my_atoi(char *str, int *flag);
 int		free_arr(char **arr);
 void	print_error(void);
+void	delete_ab(t_ab *ab);

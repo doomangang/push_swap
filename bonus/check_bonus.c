@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:31:19 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/24 22:08:24 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/24 22:17:37 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,33 @@ int	init_ab(t_ab *ab, int *arr, int size)
 	free(ab->a);
 	free(ab);
 	return (0);
+}
+
+int	convert(t_ab *ab)
+{
+	int	*new;
+	int	*tmp;
+	int	i;
+	int	j;
+
+	new = (int *)malloc(sizeof(int) * (ab->size));
+	if (!new)
+		return (0);
+	tmp = sort(ab->a);
+	if (!tmp)
+		return (0);
+	i = -1;
+	while (++i != ab->size - 1)
+	{
+		j = -1;
+		while (++j != ab->size)
+		{
+			if (tmp[i] == ab->a->stack[(ab->a->front + 1 + j) % ab->size])
+				new[(ab->a->front + 1 + j) % ab->size] = i;
+		}
+	}
+	free(tmp);
+	free(ab->a->stack);
+	ab->a->stack = new;
+	return (1);
 }
