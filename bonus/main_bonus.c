@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:06:46 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/24 22:07:40 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/25 01:30:17 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ void	dup_check(int *num, int size)
 int	sorted(int *num, int size)
 {
 	int	idx;
-	int	cmp;
 
 	idx = 1;
 	while (idx != size)

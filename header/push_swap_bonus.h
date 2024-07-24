@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:04:48 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/24 22:18:23 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/25 01:23:13 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "../libft/libft.h"
-# include "../libft/get_next_line.h"
+# include "../libft/get_next_line/get_next_line.h"
 
 # define IMAX 2147483647
 # define IMIN -2147483648
@@ -41,9 +41,13 @@ int		count_height(char **arr);
 void	dup_check(int *num, int size);
 int		sorted(int *num, int size);
 void	check(char *num, int size);
-int		init_ab(t_ab *ab, int *arr, int size);
 int		convert(t_ab *ab);
+int		sorted_ab(t_ab *ab);
+int		init_ab(t_ab *ab, int *arr, int size);
 int		my_atoi(char *str, int *flag);
 int		free_arr(char **arr);
 void	print_error(void);
 void	delete_ab(t_ab *ab);
+int		is_empty(t_stack *s);
+
+#endif

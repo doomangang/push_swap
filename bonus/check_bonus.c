@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:31:19 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/24 22:17:37 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/25 01:32:51 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	check(char *num, int size)
 {
 	t_ab	*ab;
 	char	**inst;
-	int		chunk;
 
 	ab = (t_ab *)malloc(sizeof(t_ab));
 	if (!ab)
@@ -27,38 +26,11 @@ void	check(char *num, int size)
 		return (delete_ab(ab));
 	inst = get_inst();
 	op(inst, ab);
-	if (!sorted_ab(ab))
+	if (!is_empty(ab->b) || !sorted_ab(ab->a))
 		ft_putstr_fd("KO\n", 1);
 	else
 		ft_putstr_fd("OK\n", 1);
 	delete_ab(ab);
-}
-
-int	init_ab(t_ab *ab, int *arr, int size)
-{
-	ab->a = (t_stack *)malloc(sizeof(t_stack));
-	ab->b = (t_stack *)malloc(sizeof(t_stack));
-	if (ab->a && ab->b)
-	{
-		ab->size = size + 1;
-		ab->a->stack = arr;
-		ab->b->stack = (int *)malloc(sizeof(int) * (size + 1));
-		if (ab->b)
-		{
-			ab->a->front = 0;
-			ab->a->rear = size;
-			ab->b->front = 0;
-			ab->b->rear = 0;
-			ab->a->size = size + 1;
-			ab->b->size = size + 1;
-			return (1);
-		}
-	}
-	free(ab->b->stack);
-	free(ab->b);
-	free(ab->a);
-	free(ab);
-	return (0);
 }
 
 int	convert(t_ab *ab)
@@ -87,5 +59,25 @@ int	convert(t_ab *ab)
 	free(tmp);
 	free(ab->a->stack);
 	ab->a->stack = new;
+	return (1);
+}
+
+int	sorted_ab(t_stack *s)
+{
+	int	idx;
+	int	f;
+	int	r;
+	int size;
+
+	idx = 1;
+	f = s->front;
+	r = s->rear;
+	size = s->size;
+	while ((f + idx) % size != r)
+	{
+		if (s->stack[(f + idx) % size] > s->stack[(f + idx + 1) % size])
+			return (0);
+		idx++;
+	}
 	return (1);
 }
