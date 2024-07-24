@@ -1,16 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   check_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/15 15:08:29 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/24 22:11:15 by jihyjeon         ###   ########.fr       */
+/*   Created: 2024/07/24 21:31:19 by jihyjeon          #+#    #+#             */
+/*   Updated: 2024/07/24 22:08:24 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/push_swap.h"
+#include "../header/push_swap_bonus.h"
+
+void	check(char *num, int size)
+{
+	t_ab	*ab;
+	char	**inst;
+	int		chunk;
+
+	ab = (t_ab *)malloc(sizeof(t_ab));
+	if (!ab)
+		return (free(num));
+	if (!init_ab(ab, num, size))
+		return ;
+	if (!convert(ab))
+		return (delete_ab(ab));
+	inst = get_inst();
+	op(inst, ab);
+	if (!sorted_ab(ab))
+		ft_putstr_fd("KO\n", 1);
+	else
+		ft_putstr_fd("OK\n", 1);
+	delete_ab(ab);
+}
 
 int	init_ab(t_ab *ab, int *arr, int size)
 {
@@ -37,52 +59,4 @@ int	init_ab(t_ab *ab, int *arr, int size)
 	free(ab->a);
 	free(ab);
 	return (0);
-}
-
-int	convert(t_ab *ab)
-{
-	int	*new;
-	int	*tmp;
-	int	i;
-	int	j;
-
-	new = (int *)malloc(sizeof(int) * (ab->size));
-	if (!new)
-		return (0);
-	tmp = sort(ab->a);
-	if (!tmp)
-		return (0);
-	i = -1;
-	while (++i != ab->size - 1)
-	{
-		j = -1;
-		while (++j != ab->size)
-		{
-			if (tmp[i] == ab->a->stack[(ab->a->front + 1 + j) % ab->size])
-				new[(ab->a->front + 1 + j) % ab->size] = i;
-		}
-	}
-	free(tmp);
-	free(ab->a->stack);
-	ab->a->stack = new;
-	return (1);
-}
-
-int	is_empty(t_stack *s)
-{
-	return (s->front == s->rear);
-}
-
-int	is_full(t_stack *s)
-{
-	return ((s->rear + 1) % s->size == s->front);
-}
-
-void	delete_ab(t_ab *ab)
-{
-	free(ab->b->stack);
-	free(ab->a->stack);
-	free(ab->b);
-	free(ab->a);
-	free(ab);
 }
