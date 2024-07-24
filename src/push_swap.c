@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 02:00:44 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/24 10:45:36 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:01:59 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,28 +91,29 @@ void	b_to_a(t_ab *ab)
 
 void	under_five(t_ab *ab, int size)
 {
-	int	idx;
+	int	max;
 
-	idx = 0;
-	while (idx != size - 3)
+	while (size != 3)
 	{
-		if (get_front(ab->a) > 2)
+		max = get_max(ab->a);
+		if (max <= size / 2 + 1)
 		{
-			push(ab, 'b');
-			idx++;
+			while (--max > 0)
+				rotate(ab->a, 'a');
 		}
-		else if (get_front(ab->a) <= 2)
-			rotate(ab->a, 'a');
+		else
+		{
+			while (max++ < size + 1)
+				rev_rotate(ab->a, 'a');
+		}
+		push(ab, 'b');
+		size--;
 	}
 	sort_three(ab->a);
-	if (size > 3)
+	while (!is_empty(ab->b))
 	{
-		if (get_front(ab->b) > ab->b->stack[ab->b->rear])
-			rotate(ab->b, 'b');
 		push(ab, 'a');
 		rotate(ab->a, 'a');
-		if (push(ab, 'a'))
-			rotate(ab->a, 'a');
 	}
 }
 

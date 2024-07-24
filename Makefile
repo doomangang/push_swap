@@ -17,7 +17,7 @@ LIBFT			= $(LIBFT_DIR)libft.a
 LIBFT_DIR		= libft/
 
 CC				= cc
-CFLAGS			= -Wall -Wextra -Werror -g
+CFLAGS			= -Wall -Wextra -Werror
 FT_LINK			= -lft -L$(LIBFT_DIR)
 INCLUDES		= -I$(HEADER_DIR) -I$(LIBFT_DIR)
 

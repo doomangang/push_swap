@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 19:21:09 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/24 04:12:38 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:05:25 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include "../libft/libft.h"
 
 # define IMAX 2147483647
@@ -40,7 +39,6 @@ int		*get_num(char **av, int *size);
 int		count_height(char **arr);
 int		free_arr(char **arr);
 void	print_error(void);
-int	is_valid(int sign, int itgr, char *str);
 int		my_atoi(char *str, int *flag);
 int		sorted(int *num, int size);
 int		init_ab(t_ab *ab, int *arr, int size);
@@ -69,6 +67,5 @@ int		pop_front(t_stack *s);
 int		pop_rear(t_stack *s);
 int		get_front(t_stack *s);
 int		get_rear(t_stack *s);
-size_t	s_cnt(const char *str, char chr);
 
 #endif

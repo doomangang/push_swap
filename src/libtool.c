@@ -6,11 +6,11 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:06:08 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/24 02:10:33 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:01:48 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../header/push_swap.h"
+#include "../header/push_swap.h"
 
 int	is_valid(int sign, int itgr, char *str)
 {
@@ -93,7 +93,7 @@ void	copy(t_stack *s, int *t)
 int	sorted(int *num, int size)
 {
 	int	idx;
-	int cmp;
+	int	cmp;
 
 	idx = 0;
 	while (++idx < size)
