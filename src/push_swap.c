@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 02:00:44 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/24 04:21:06 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/24 10:45:36 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	a_to_b(t_ab *ab, int ch)
 	i = 0;
 	while (i != ab->size - 1)
 	{
+		if (get_rear(ab->a) <= i + ch)
+			rev_rotate(ab->a, 'a');
 		if (get_front(ab->a) <= i)
 		{
 			push(ab, 'b');
