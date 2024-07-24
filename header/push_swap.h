@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 19:21:09 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/24 19:05:25 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:50:34 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		*sort(t_stack *s);
 int		sorted(int *num, int size);
 int		convert(t_ab *ab);
 void	copy(t_stack *s, int *t);
-void	push_swap(t_ab *ab, int *num, int size);
+void	push_swap(int *num, int size);
 void	a_to_b(t_ab *ab, int ch);
 void	b_to_a(t_ab *b);
 void	swap(t_stack *s, char ab);

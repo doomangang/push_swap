@@ -6,16 +6,20 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 02:00:44 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/24 19:01:59 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:05:00 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-void	push_swap(t_ab *ab, int *num, int size)
+void	push_swap(int *num, int size)
 {
-	int	chunk;
+	t_ab	*ab;
+	int		chunk;
 
+	ab = (t_ab *)malloc(sizeof(t_ab));
+	if (!ab)
+		return (free(num));
 	if (!init_ab(ab, num, size))
 		return ;
 	if (size == 2)
@@ -43,7 +47,7 @@ void	a_to_b(t_ab *ab, int ch)
 	i = 0;
 	while (i != ab->size - 1)
 	{
-		if (get_rear(ab->a) <= i + ch)
+		if (i * 2 < ab->size - 1 && get_rear(ab->a) <= i + ch)
 			rev_rotate(ab->a, 'a');
 		if (get_front(ab->a) <= i)
 		{

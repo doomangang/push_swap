@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 19:21:00 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/24 18:59:32 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:57:00 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int ac, char **av)
 	int		*num;
 	int		size;
 	char	**tmp;
-	t_ab	*ab;
 
 	if (ac < 2)
 		return (0);
@@ -33,10 +32,7 @@ int	main(int ac, char **av)
 		print_error();
 	if (sorted(num, size))
 		return (0);
-	ab = (t_ab *)malloc(sizeof(t_ab));
-	if (!ab)
-		return (0);
-	push_swap(ab, num, size);
+	push_swap(num, size);
 	return (0);
 }
 
@@ -47,6 +43,8 @@ int	*get_num(char **av, int *size)
 	int	*arr;
 
 	*size = count_height(av);
+	if (!*size)
+		return (0);
 	arr = (int *)malloc(sizeof(int) * (*size + 1));
 	if (!arr)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:06:08 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/24 19:01:48 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:52:04 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ int	is_valid(int sign, int itgr, char *str)
 {
 	if (!ft_isdigit(*str))
 		return (0);
+	if (sign == 1 && itgr > IMAX / 10)
+		return (0);
 	if (sign == 1 && itgr * 10 > IMAX - *str + '0')
+		return (0);
+	if (sign == -1 && -1 * itgr < IMIN / 10)
 		return (0);
 	if (sign == -1 && itgr * -10 < IMIN + *str - '0')
 		return (0);
