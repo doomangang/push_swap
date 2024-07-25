@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:31:19 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/25 01:32:51 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:53:58 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	check(char *num, int size)
 {
 	t_ab	*ab;
-	char	**inst;
 
 	ab = (t_ab *)malloc(sizeof(t_ab));
 	if (!ab)
@@ -24,13 +23,30 @@ void	check(char *num, int size)
 		return ;
 	if (!convert(ab))
 		return (delete_ab(ab));
-	inst = get_inst();
-	op(inst, ab);
+	operate(ab);
 	if (!is_empty(ab->b) || !sorted_ab(ab->a))
 		ft_putstr_fd("KO\n", 1);
 	else
 		ft_putstr_fd("OK\n", 1);
 	delete_ab(ab);
+}
+
+void	operation(t_ab *ab)
+{
+	t_inst	*head;
+	t_inst	*ptr;
+	char	*line;
+
+	ptr = head;
+	line = get_next_line(0);
+	while (line)
+	{
+		ptr = (t_inst *)malloc(sizeof(t_inst));
+		if (!ptr)
+			return (clear_inst(&head));
+		ptr->next = NULL;
+		ptr->prev = NULL;
+	}
 }
 
 int	convert(t_ab *ab)

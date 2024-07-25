@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:04:48 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/25 01:23:13 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:43:47 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ typedef struct s_ab
 	t_stack	*b;
 	int		size;
 }			t_ab;
+
+typedef struct s_inst
+{
+	char			*inst;
+	struct s_inst	*prev;
+	struct s_inst	*next;
+}					t_inst;
 
 int		*get_num(char **av, int *size);
 int		count_height(char **arr);
