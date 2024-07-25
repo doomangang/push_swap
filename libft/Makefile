@@ -1,6 +1,6 @@
 NAME 	= libft.a
-INC		= includes
 HEADER	= libft.h
+GNL_H	= get_next_line/get_next_line.h
 LIBC	= ar rcs
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
@@ -39,43 +39,26 @@ SRCS	= ft_isalpha.c\
 		ft_putchar_fd.c\
 		ft_putstr_fd.c\
 		ft_putendl_fd.c\
-		ft_putnbr_fd.c
-SRCS_B	= ft_lstadd_front_bonus.c\
-		ft_lstnew_bonus.c\
-		ft_lstmap_bonus.c \
-    	ft_lstclear_bonus.c\
-		ft_lstadd_back_bonus.c\
-		ft_lstsize_bonus.c\
-		ft_lstlast_bonus.c\
-		ft_lstdelone_bonus.c\
-		ft_lstiter_bonus.c
-OBJS	= ${SRCS:.c=.o}
-OBJS_B  = ${SRCS_B:.c=.o}
+		ft_putnbr_fd.c\
+		get_next_line/get_next_line.c\
+		get_next_line/get_next_line_utils.c
 
-ifdef WITH_BONUS
-	OBJ_SWITCH = ${OBJS} ${OBJS_B} 
-else
-	OBJ_SWITCH = ${OBJS}
-endif
+OBJS	= ${SRCS:.c=.o}
 
 all: ${NAME}
 
-bonus:
-	sleep 1
-	${MAKE} WITH_BONUS=1 all
-
-${NAME}: ${OBJ_SWITCH}
+${NAME}: ${OBJS}
 	${LIBC} $@ $^
 
-%.o: %.c ${INC}/${HEADER}
-	${CC} ${CFLAGS} -c $< -o $@ -I${INC}
+%.o: %.c ${HEADER} ${GNL_H}
+	${CC} ${CFLAGS} -c $< -o $@ -I.
 
 clean:
-	${RM} ${OBJS} ${OBJS_B}
+	${RM} ${OBJS}
 
 fclean: clean
 	${RM} ${NAME}
 
 re: fclean all
 
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 01:16:24 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/25 01:18:01 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/26 02:07:42 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,16 @@ int	init_ab(t_ab *ab, int *arr, int size)
 	free(ab->a);
 	free(ab);
 	return (0);
+}
+
+void	rr(t_ab *ab)
+{
+	rotate(ab, 'a');
+	rotate(ab, 'b');
+}
+
+void	rrr(t_ab *ab)
+{
+	rev_rotate(ab, 'a');
+	rev_rotate(ab, 'b');
 }

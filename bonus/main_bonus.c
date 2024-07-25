@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:06:46 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/25 01:30:17 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/26 02:46:39 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ int main(int ac, char **av)
 	if (!num)
 		print_error();
 	dup_check(num, size);
-	if (sorted(num, size))
-	{
-		if (!get_next_line(0))
-			print_error();
-	}
 	check(num, size);
 	return (0);
 }
@@ -99,19 +94,4 @@ void	dup_check(int *num, int size)
 			}
 		}
 	}
-}
-
-int	sorted(int *num, int size)
-{
-	int	idx;
-
-	idx = 1;
-	while (idx != size)
-	{
-		if (num[idx] > num[idx + 1])
-			return (0);
-		idx++;
-	}
-	free(num);
-	return (1);
 }
