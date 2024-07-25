@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 02:07:07 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/26 02:30:20 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/26 04:27:20 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,4 @@ int	*sort(t_stack *s)
 		}
 	}
 	return (tab);
-}
-
-int	clear_inst(t_inst *head)
-{
-	t_inst	*del;
-	t_inst	*ptr;
-
-	ptr = head;
-	while (ptr && ptr->next)
-	{
-		del = ptr;
-		ptr = ptr->next;
-		free(del->inst);
-		free(del);
-	}
-	free(ptr->inst);
-	free(ptr);
-	return (0);
 }

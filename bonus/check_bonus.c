@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:31:19 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/26 03:21:29 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/26 04:37:56 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	check(int *num, int size)
 {
 	t_ab	*ab;
+	char	*line;
 
 	ab = (t_ab *)malloc(sizeof(t_ab));
 	if (!ab)
@@ -23,8 +24,13 @@ void	check(int *num, int size)
 		return ;
 	if (!convert(ab))
 		return (delete_ab(ab));
-	if(!operate(ab))
-		return (delete_ab(ab));
+	line = get_next_line(0);
+	while (line)
+	{
+		execute(line, ab);
+		free(line);
+		line = get_next_line(0);
+	}
 	if (!is_empty(ab->b) || !sorted_ab(ab->a))
 		ft_putstr_fd("KO\n", 1);
 	else
@@ -32,60 +38,28 @@ void	check(int *num, int size)
 	delete_ab(ab);
 }
 
-int	operate(t_ab *ab)
+void	execute(char *line, t_ab *ab)
 {
-	t_inst	*head;
-	t_inst	*ptr;
-
-	head = (t_inst *)malloc(sizeof(t_inst));
-	if (!head)
-		return (0);
-	ptr = head;
-	ptr->inst = get_next_line(0);
-	ptr->next = 0;
-	ptr->head = head;
-	while (ptr->inst)
-	{
-		ptr->next = (t_inst *)malloc(sizeof(t_inst));
-		if (!ptr->next)
-			return (clear_inst(head));
-		ptr = ptr->next;
-		ptr->head = head;
-		ptr->inst = get_next_line(0);
-		ptr->next = NULL;
-	}
-	ptr = head;
-	while (execute(ptr, ab))
-		ptr = ptr->next;
-	clear_inst(head);
-	return (1);
-}
-
-int	execute(t_inst *ptr, t_ab *ab)
-{
-	if (!ptr->inst)
-		return (0);
-	if (!str_cmp(ptr->inst, "sa\n") || !str_cmp(ptr->inst, "sb\n"))
-		swap(ab, ptr->inst[1]);
-	else if (!str_cmp(ptr->inst, "ss\n"))
+	if (!str_cmp(line, "sa\n") || !str_cmp(line, "sb\n"))
+		swap(ab, line[1]);
+	else if (!str_cmp(line, "ss\n"))
 		ss(ab);
-	else if (!str_cmp(ptr->inst, "pa\n") || !str_cmp(ptr->inst, "pb\n"))
-		push(ab, ptr->inst[1]);
-	else if (!str_cmp(ptr->inst, "ra\n") || !str_cmp(ptr->inst, "rb\n"))
-		rotate(ab, ptr->inst[1]);
-	else if (!str_cmp(ptr->inst, "rr\n"))
+	else if (!str_cmp(line, "pa\n") || !str_cmp(line, "pb\n"))
+		push(ab, line[1]);
+	else if (!str_cmp(line, "ra\n") || !str_cmp(line, "rb\n"))
+		rotate(ab, line[1]);
+	else if (!str_cmp(line, "rr\n"))
 		rr(ab);
-	else if (!str_cmp(ptr->inst, "rra\n") || !str_cmp(ptr->inst, "rrb\n"))
-		rev_rotate(ab, ptr->inst[2]);
-	else if (!str_cmp(ptr->inst, "rrr\n"))
+	else if (!str_cmp(line, "rra\n") || !str_cmp(line, "rrb\n"))
+		rev_rotate(ab, line[2]);
+	else if (!str_cmp(line, "rrr\n"))
 		rrr(ab);
 	else
 	{
 		delete_ab(ab);
-		clear_inst(ptr->head);
+		free(line);
 		print_error();
 	}
-	return (1);
 }
 
 int	convert(t_ab *ab)

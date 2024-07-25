@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:04:48 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/26 02:46:49 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/26 04:28:49 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,12 @@ typedef struct s_ab
 	int		size;
 }			t_ab;
 
-typedef struct s_inst
-{
-	char			*inst;
-	struct s_inst	*next;
-	struct s_inst	*head;
-}					t_inst;
-
 int		*get_num(char **av, int *size);
 int		count_height(char **arr);
 void	dup_check(int *num, int size);
 int		*sort(t_stack *s);
 void	check(int *num, int size);
-int		operate(t_ab *ab);
-int		execute(t_inst *ptr, t_ab *ab);
+void	execute(char *line, t_ab *ab);
 int		str_cmp(char *s1, char *s2);
 int		convert(t_ab *ab);
 int		sorted_ab(t_stack *s);
@@ -58,7 +50,6 @@ int		my_atoi(char *str, int *flag);
 int		free_arr(char **arr);
 void	print_error(void);
 void	delete_ab(t_ab *ab);
-int		clear_inst(t_inst *head);
 int		is_empty(t_stack *s);
 void	rr(t_ab *ab);
 void	rrr(t_ab *ab);
