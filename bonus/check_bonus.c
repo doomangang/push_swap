@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:31:19 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/26 04:44:48 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/26 04:51:23 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,23 @@ void	execute(char *line, t_ab *ab)
 		free(line);
 		print_error();
 	}
+}
+
+int	str_cmp(char *s1, char *s2)
+{
+	unsigned char	*one;
+	unsigned char	*two;
+
+	one = (unsigned char *)s1;
+	two = (unsigned char *)s2;
+	while (*two)
+	{
+		if (*one != *two)
+			return (*(unsigned char *)one - *(unsigned char *)two);
+		one++;
+		two++;
+	}
+	return (*(unsigned char *)(one - 1) - *(unsigned char *)(two - 1));
 }
 
 int	convert(t_ab *ab)

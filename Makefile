@@ -11,7 +11,6 @@ SRCS 			= src/main.c\
 SRCS_B			= bonus/main_bonus.c\
 				bonus/check_bonus.c\
 				bonus/util_bonus.c\
-				bonus/util2_bonus.c\
 				bonus/command_bonus.c\
 				bonus/stack_bonus.c\
 				bonus/stack_util_bonus.c

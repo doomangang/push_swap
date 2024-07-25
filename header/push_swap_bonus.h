@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:04:48 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/26 04:28:49 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/26 04:54:14 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		*get_num(char **av, int *size);
 int		count_height(char **arr);
 void	dup_check(int *num, int size);
 int		*sort(t_stack *s);
+void	copy(t_stack *s, int *t);
 void	check(int *num, int size);
 void	execute(char *line, t_ab *ab);
 int		str_cmp(char *s1, char *s2);
