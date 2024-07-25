@@ -6,13 +6,13 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:06:46 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/26 04:42:01 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/26 04:44:32 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap_bonus.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	int		*num;
 	int		size;

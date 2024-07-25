@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:31:19 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/26 04:37:56 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/26 04:44:48 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	sorted_ab(t_stack *s)
 	int	idx;
 	int	f;
 	int	r;
-	int size;
+	int	size;
 
 	idx = 1;
 	f = s->front;
